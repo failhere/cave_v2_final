@@ -1,0 +1,1040 @@
+{
+  "zones": [
+    {
+      "name": "A",
+      "sort_order": 1
+    },
+    {
+      "name": "FOUDRE",
+      "sort_order": 2
+    },
+    {
+      "name": "BETON",
+      "sort_order": 3
+    },
+    {
+      "name": "C",
+      "sort_order": 4
+    },
+    {
+      "name": "S",
+      "sort_order": 5
+    },
+    {
+      "name": "EXTERIEUR",
+      "sort_order": 6
+    },
+    {
+      "name": "CHAPEAU FLOTTANT",
+      "sort_order": 7
+    },
+    {
+      "name": "CHAI A BARRIQUES",
+      "sort_order": 8
+    },
+    {
+      "name": "OEUFS BETON",
+      "sort_order": 9
+    },
+    {
+      "name": "GARDE VIN BLEU",
+      "sort_order": 10
+    },
+    {
+      "name": "LIES",
+      "sort_order": 11
+    }
+  ],
+  "tanks": [
+    {
+      "id": "C1",
+      "label": "C1",
+      "zone": "A",
+      "capacity_hl": 51.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 1
+    },
+    {
+      "id": "C2",
+      "label": "C2",
+      "zone": "A",
+      "capacity_hl": 50.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 2
+    },
+    {
+      "id": "C3",
+      "label": "C3",
+      "zone": "A",
+      "capacity_hl": 51.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 3
+    },
+    {
+      "id": "C4",
+      "label": "C4",
+      "zone": "A",
+      "capacity_hl": 50.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 4
+    },
+    {
+      "id": "C5",
+      "label": "C5",
+      "zone": "A",
+      "capacity_hl": 75.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 5
+    },
+    {
+      "id": "C6",
+      "label": "C6",
+      "zone": "A",
+      "capacity_hl": 69.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 6
+    },
+    {
+      "id": "C7",
+      "label": "C7",
+      "zone": "A",
+      "capacity_hl": 75.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 7
+    },
+    {
+      "id": "C8",
+      "label": "C8",
+      "zone": "A",
+      "capacity_hl": 69.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 8
+    },
+    {
+      "id": "C9",
+      "label": "C9",
+      "zone": "A",
+      "capacity_hl": 148.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 9
+    },
+    {
+      "id": "C10",
+      "label": "C10",
+      "zone": "A",
+      "capacity_hl": 148.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 10
+    },
+    {
+      "id": "C11",
+      "label": "C11",
+      "zone": "A",
+      "capacity_hl": 148.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 11
+    },
+    {
+      "id": "C12",
+      "label": "C12",
+      "zone": "A",
+      "capacity_hl": 148.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 12
+    },
+    {
+      "id": "F1",
+      "label": "F1",
+      "zone": "FOUDRE",
+      "capacity_hl": 35.0,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 13
+    },
+    {
+      "id": "F2",
+      "label": "F2",
+      "zone": "FOUDRE",
+      "capacity_hl": 35.0,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 14
+    },
+    {
+      "id": "F3",
+      "label": "F3",
+      "zone": "FOUDRE",
+      "capacity_hl": 35.0,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 15
+    },
+    {
+      "id": "F4",
+      "label": "F4",
+      "zone": "FOUDRE",
+      "capacity_hl": 35.0,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 16
+    },
+    {
+      "id": "F5",
+      "label": "F5",
+      "zone": "FOUDRE",
+      "capacity_hl": 35.0,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 17
+    },
+    {
+      "id": "F13",
+      "label": "F13",
+      "zone": "FOUDRE",
+      "capacity_hl": 80.0,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 18
+    },
+    {
+      "id": "F14",
+      "label": "F14",
+      "zone": "FOUDRE",
+      "capacity_hl": 80.0,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 19
+    },
+    {
+      "id": "F15",
+      "label": "F15",
+      "zone": "FOUDRE",
+      "capacity_hl": 80.0,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 20
+    },
+    {
+      "id": "F16",
+      "label": "F16",
+      "zone": "FOUDRE",
+      "capacity_hl": 100.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 21
+    },
+    {
+      "id": "F17",
+      "label": "F17",
+      "zone": "FOUDRE",
+      "capacity_hl": 100.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 22
+    },
+    {
+      "id": "B1",
+      "label": "B1",
+      "zone": "BETON",
+      "capacity_hl": 100.0,
+      "container_type": "cuve",
+      "material": "BETON",
+      "sort_order": 23
+    },
+    {
+      "id": "B2",
+      "label": "B2",
+      "zone": "BETON",
+      "capacity_hl": 100.0,
+      "container_type": "cuve",
+      "material": "BETON",
+      "sort_order": 24
+    },
+    {
+      "id": "B3",
+      "label": "B3",
+      "zone": "BETON",
+      "capacity_hl": 66.0,
+      "container_type": "cuve",
+      "material": "BETON",
+      "sort_order": 25
+    },
+    {
+      "id": "B4",
+      "label": "B4",
+      "zone": "BETON",
+      "capacity_hl": 66.0,
+      "container_type": "cuve",
+      "material": "BETON",
+      "sort_order": 26
+    },
+    {
+      "id": "B5",
+      "label": "B5",
+      "zone": "BETON",
+      "capacity_hl": 55.0,
+      "container_type": "cuve",
+      "material": "BETON",
+      "sort_order": 27
+    },
+    {
+      "id": "B6",
+      "label": "B6",
+      "zone": "BETON",
+      "capacity_hl": 45.0,
+      "container_type": "cuve",
+      "material": "BETON",
+      "sort_order": 28
+    },
+    {
+      "id": "B7",
+      "label": "B7",
+      "zone": "BETON",
+      "capacity_hl": 45.0,
+      "container_type": "cuve",
+      "material": "BETON",
+      "sort_order": 29
+    },
+    {
+      "id": "B8",
+      "label": "B8",
+      "zone": "BETON",
+      "capacity_hl": 51.0,
+      "container_type": "cuve",
+      "material": "BETON",
+      "sort_order": 30
+    },
+    {
+      "id": "B9",
+      "label": "B9",
+      "zone": "BETON",
+      "capacity_hl": 80.0,
+      "container_type": "cuve",
+      "material": "BETON",
+      "sort_order": 31
+    },
+    {
+      "id": "B10",
+      "label": "B10",
+      "zone": "BETON",
+      "capacity_hl": 80.0,
+      "container_type": "cuve",
+      "material": "BETON",
+      "sort_order": 32
+    },
+    {
+      "id": "B11",
+      "label": "B11",
+      "zone": "BETON",
+      "capacity_hl": 80.0,
+      "container_type": "cuve",
+      "material": "BETON",
+      "sort_order": 33
+    },
+    {
+      "id": "B12",
+      "label": "B12",
+      "zone": "BETON",
+      "capacity_hl": 35.0,
+      "container_type": "cuve",
+      "material": "BETON",
+      "sort_order": 34
+    },
+    {
+      "id": "B13",
+      "label": "B13",
+      "zone": "BETON",
+      "capacity_hl": 35.0,
+      "container_type": "cuve",
+      "material": "BETON",
+      "sort_order": 35
+    },
+    {
+      "id": "B14",
+      "label": "B14",
+      "zone": "BETON",
+      "capacity_hl": 25.0,
+      "container_type": "cuve",
+      "material": "BETON",
+      "sort_order": 36
+    },
+    {
+      "id": "B15",
+      "label": "B15",
+      "zone": "BETON",
+      "capacity_hl": 25.0,
+      "container_type": "cuve",
+      "material": "BETON",
+      "sort_order": 37
+    },
+    {
+      "id": "C19",
+      "label": "C19",
+      "zone": "C",
+      "capacity_hl": 107.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 38
+    },
+    {
+      "id": "C20",
+      "label": "C20",
+      "zone": "C",
+      "capacity_hl": 107.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 39
+    },
+    {
+      "id": "C21",
+      "label": "C21",
+      "zone": "C",
+      "capacity_hl": 75.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 40
+    },
+    {
+      "id": "C22",
+      "label": "C22",
+      "zone": "C",
+      "capacity_hl": 30.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 41
+    },
+    {
+      "id": "C23",
+      "label": "C23",
+      "zone": "C",
+      "capacity_hl": 52.5,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 42
+    },
+    {
+      "id": "C24",
+      "label": "C24",
+      "zone": "C",
+      "capacity_hl": 52.5,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 43
+    },
+    {
+      "id": "C25",
+      "label": "C25",
+      "zone": "C",
+      "capacity_hl": 50.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 44
+    },
+    {
+      "id": "C26",
+      "label": "C26",
+      "zone": "C",
+      "capacity_hl": 25.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 45
+    },
+    {
+      "id": "C27",
+      "label": "C27",
+      "zone": "C",
+      "capacity_hl": 25.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 46
+    },
+    {
+      "id": "C28",
+      "label": "C28",
+      "zone": "C",
+      "capacity_hl": 203.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 47
+    },
+    {
+      "id": "C29",
+      "label": "C29",
+      "zone": "C",
+      "capacity_hl": 50.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 48
+    },
+    {
+      "id": "C30",
+      "label": "C30",
+      "zone": "C",
+      "capacity_hl": 25.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 49
+    },
+    {
+      "id": "C31",
+      "label": "C31",
+      "zone": "C",
+      "capacity_hl": 25.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 50
+    },
+    {
+      "id": "C32",
+      "label": "C32",
+      "zone": "C",
+      "capacity_hl": 107.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 51
+    },
+    {
+      "id": "C33",
+      "label": "C33",
+      "zone": "C",
+      "capacity_hl": 249.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 52
+    },
+    {
+      "id": "S1",
+      "label": "S1",
+      "zone": "S",
+      "capacity_hl": 160.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 53
+    },
+    {
+      "id": "S2",
+      "label": "S2",
+      "zone": "S",
+      "capacity_hl": 160.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 54
+    },
+    {
+      "id": "S3",
+      "label": "S3",
+      "zone": "S",
+      "capacity_hl": 206.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 55
+    },
+    {
+      "id": "S4",
+      "label": "S4",
+      "zone": "S",
+      "capacity_hl": 50.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 56
+    },
+    {
+      "id": "S5",
+      "label": "S5",
+      "zone": "S",
+      "capacity_hl": 349.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 57
+    },
+    {
+      "id": "S6",
+      "label": "S6",
+      "zone": "S",
+      "capacity_hl": 50.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 58
+    },
+    {
+      "id": "S7",
+      "label": "S7",
+      "zone": "S",
+      "capacity_hl": 206.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 59
+    },
+    {
+      "id": "S8",
+      "label": "S8",
+      "zone": "S",
+      "capacity_hl": 160.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 60
+    },
+    {
+      "id": "S9",
+      "label": "S9",
+      "zone": "S",
+      "capacity_hl": 160.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 61
+    },
+    {
+      "id": "E1",
+      "label": "E1",
+      "zone": "EXTERIEUR",
+      "capacity_hl": 250.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 62
+    },
+    {
+      "id": "E2",
+      "label": "E2",
+      "zone": "EXTERIEUR",
+      "capacity_hl": 250.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 63
+    },
+    {
+      "id": "E3",
+      "label": "E3",
+      "zone": "EXTERIEUR",
+      "capacity_hl": 250.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 64
+    },
+    {
+      "id": "E4",
+      "label": "E4",
+      "zone": "EXTERIEUR",
+      "capacity_hl": 250.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 65
+    },
+    {
+      "id": "E5",
+      "label": "E5",
+      "zone": "EXTERIEUR",
+      "capacity_hl": 250.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 66
+    },
+    {
+      "id": "CF1",
+      "label": "CF1",
+      "zone": "CHAPEAU FLOTTANT",
+      "capacity_hl": 30.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 67
+    },
+    {
+      "id": "CF2",
+      "label": "CF2",
+      "zone": "CHAPEAU FLOTTANT",
+      "capacity_hl": 30.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 68
+    },
+    {
+      "id": "CF3",
+      "label": "CF3",
+      "zone": "CHAPEAU FLOTTANT",
+      "capacity_hl": 30.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 69
+    },
+    {
+      "id": "CF4",
+      "label": "CF4",
+      "zone": "CHAPEAU FLOTTANT",
+      "capacity_hl": 10.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 70
+    },
+    {
+      "id": "CF5",
+      "label": "CF5",
+      "zone": "CHAPEAU FLOTTANT",
+      "capacity_hl": 10.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 71
+    },
+    {
+      "id": "CF6",
+      "label": "CF6",
+      "zone": "CHAPEAU FLOTTANT",
+      "capacity_hl": 25.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 72
+    },
+    {
+      "id": "CF7",
+      "label": "CF7",
+      "zone": "CHAPEAU FLOTTANT",
+      "capacity_hl": 25.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 73
+    },
+    {
+      "id": "CF8",
+      "label": "CF8",
+      "zone": "CHAPEAU FLOTTANT",
+      "capacity_hl": 10.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 74
+    },
+    {
+      "id": "CF9",
+      "label": "CF9",
+      "zone": "CHAPEAU FLOTTANT",
+      "capacity_hl": 10.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 75
+    },
+    {
+      "id": "BB1",
+      "label": "BB1",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 76
+    },
+    {
+      "id": "BB2",
+      "label": "BB2",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 77
+    },
+    {
+      "id": "BB9",
+      "label": "BB9",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 78
+    },
+    {
+      "id": "BB10",
+      "label": "BB10",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 79
+    },
+    {
+      "id": "BB13",
+      "label": "BB13",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 80
+    },
+    {
+      "id": "BB14",
+      "label": "BB14",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 81
+    },
+    {
+      "id": "BB17",
+      "label": "BB17",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 82
+    },
+    {
+      "id": "BB18",
+      "label": "BB18",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 83
+    },
+    {
+      "id": "BB19",
+      "label": "BB19",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 84
+    },
+    {
+      "id": "BB20",
+      "label": "BB20",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 85
+    },
+    {
+      "id": "BB21",
+      "label": "BB21",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 86
+    },
+    {
+      "id": "BB22",
+      "label": "BB22",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 87
+    },
+    {
+      "id": "BS4",
+      "label": "BS4",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 88
+    },
+    {
+      "id": "BR1",
+      "label": "BR1",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 89
+    },
+    {
+      "id": "BR2",
+      "label": "BR2",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 90
+    },
+    {
+      "id": "BR3",
+      "label": "BR3",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 91
+    },
+    {
+      "id": "BR4",
+      "label": "BR4",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 92
+    },
+    {
+      "id": "BR5",
+      "label": "BR5",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 93
+    },
+    {
+      "id": "BR6",
+      "label": "BR6",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 94
+    },
+    {
+      "id": "BR7",
+      "label": "BR7",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 95
+    },
+    {
+      "id": "BR8",
+      "label": "BR8",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 96
+    },
+    {
+      "id": "BR9",
+      "label": "BR9",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 97
+    },
+    {
+      "id": "BR10",
+      "label": "BR10",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 98
+    },
+    {
+      "id": "BR11",
+      "label": "BR11",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 99
+    },
+    {
+      "id": "BR12",
+      "label": "BR12",
+      "zone": "CHAI A BARRIQUES",
+      "capacity_hl": 2.25,
+      "container_type": "cuve",
+      "material": "BOIS",
+      "sort_order": 100
+    },
+    {
+      "id": "ONE",
+      "label": "ONE",
+      "zone": "OEUFS BETON",
+      "capacity_hl": 6.75,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 101
+    },
+    {
+      "id": "ONO",
+      "label": "ONO",
+      "zone": "OEUFS BETON",
+      "capacity_hl": 6.75,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 102
+    },
+    {
+      "id": "OSE",
+      "label": "OSE",
+      "zone": "OEUFS BETON",
+      "capacity_hl": 6.75,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 103
+    },
+    {
+      "id": "OSO",
+      "label": "OSO",
+      "zone": "OEUFS BETON",
+      "capacity_hl": 6.75,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 104
+    },
+    {
+      "id": "BLEU",
+      "label": "BLEU",
+      "zone": "GARDE VIN BLEU",
+      "capacity_hl": 3.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 105
+    },
+    {
+      "id": "VERT",
+      "label": "VERT",
+      "zone": "GARDE VIN BLEU",
+      "capacity_hl": 3.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 106
+    },
+    {
+      "id": "L1",
+      "label": "L1",
+      "zone": "LIES",
+      "capacity_hl": 30.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 107
+    },
+    {
+      "id": "L2",
+      "label": "L2",
+      "zone": "LIES",
+      "capacity_hl": 30.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 108
+    },
+    {
+      "id": "L3",
+      "label": "L3",
+      "zone": "LIES",
+      "capacity_hl": 30.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 109
+    },
+    {
+      "id": "L4",
+      "label": "L4",
+      "zone": "LIES",
+      "capacity_hl": 30.0,
+      "container_type": "cuve",
+      "material": "INOX",
+      "sort_order": 110
+    }
+  ]
+}

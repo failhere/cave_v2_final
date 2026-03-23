@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Suivi de cave V2</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div id="loginScreen" class="login-screen">
+    <form id="loginForm" class="login-card">
+      <div class="eyebrow">Suivi de cave V2</div>
+      <h1>Connexion</h1>
+      <p class="subtle">Application partagée pour Pierre, Jean-michel et Sylvain.</p>
+      <label>Identifiant<input name="username" autocomplete="username" required></label>
+      <label>Mot de passe<input name="password" type="password" autocomplete="current-password" required></label>
+      <button type="submit">Se connecter</button>
+      <div id="loginError" class="error"></div>
+      <div class="hint">Comptes : pierre, jean-michel, sylvain</div>
+    </form>
+  </div>
+
+  <div id="appShell" class="app-shell hidden">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">🍷</div>
+        <div>
+          <div class="eyebrow">Suivi de cave</div>
+          <strong>Version V2</strong>
+        </div>
+      </div>
+
+      <nav class="side-nav">
+        <button data-view="dashboard" class="active">Dashboard</button>
+        <button data-view="plan">Plan de cave</button>
+        <button data-view="lots">Lots</button>
+        <button data-view="calendar">Calendrier</button>
+        <button data-view="history">Historique</button>
+        <button data-view="alerts">Alertes</button>
+      </nav>
+
+      <section class="sidebar-actions">
+        <button id="quickEntryBtn">+ Entrée</button>
+        <button id="newMovementBtn" class="secondary">+ Mouvement</button>
+        <button id="newLotBtn" class="secondary">+ Lot</button>
+        <button id="newEventBtn" class="secondary">+ Événement</button>
+      </section>
+
+      <section class="sidebar-card">
+        <div class="subtle">Connecté en tant que</div>
+        <div id="userBadge" class="user-badge"></div>
+      </section>
+
+      <section class="sidebar-card">
+        <div class="subtle">Statuts</div>
+        <div class="legend stacked">
+          <span><i class="s vide"></i>Vide</span>
+          <span><i class="s onp"></i>Occupée non pleine</span>
+          <span><i class="s op"></i>Occupée pleine</span>
+          <span><i class="s ferm"></i>Fermentation</span>
+          <span><i class="s elev"></i>Élevage</span>
+          <span><i class="s net"></i>À nettoyer</span>
+          <span><i class="s der"></i>À dérougir</span>
+          <span><i class="s alert"></i>Alerte</span>
+        </div>
+      </section>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div>
+          <h2 id="pageTitle">Dashboard</h2>
+          <div id="pageSubtitle" class="subtle">Vue d’ensemble de la cave</div>
+        </div>
+        <div class="topbar-actions">
+          <button id="refreshBtn" class="secondary">Actualiser</button>
+          <button id="logoutBtn" class="secondary">Déconnexion</button>
+        </div>
+      </header>
+
+      <section class="toolbar">
+        <input id="searchInput" type="search" placeholder="Rechercher cuve ou lot">
+        <select id="zoneFilter"></select>
+        <select id="statusFilter">
+          <option value="">Tous statuts</option>
+          <option value="vide">Vide</option>
+          <option value="occupee_non_pleine">Occupée non pleine</option>
+          <option value="occupee_pleine">Occupée pleine</option>
+          <option value="fermentation">Fermentation</option>
+          <option value="elevage">Élevage</option>
+          <option value="nettoyage">À nettoyer</option>
+          <option value="a_derougir">À dérougir</option>
+          <option value="alerte">Alerte</option>
+        </select>
+      </section>
+
+      <main class="main-content">
+        <section id="view-dashboard" class="view active">
+          <div id="dashboardStats" class="kpi-grid"></div>
+          <div class="dashboard-grid">
+            <div class="panel">
+              <div class="panel-title-row">
+                <h3>Aujourd’hui</h3>
+                <span id="todayDateLabel" class="subtle"></span>
+              </div>
+              <div id="todayEvents"></div>
+            </div>
+            <div class="panel">
+              <div class="panel-title-row">
+                <h3>Derniers mouvements</h3>
+                <button class="text-btn" data-view-jump="history">Voir tout</button>
+              </div>
+              <div id="recentHistory"></div>
+            </div>
+          </div>
+          <div class="dashboard-grid">
+            <div class="panel">
+              <div class="panel-title-row">
+                <h3>Cuves à traiter</h3>
+                <button class="text-btn" data-view-jump="alerts">Ouvrir alertes</button>
+              </div>
+              <div id="dashboardCleaning"></div>
+            </div>
+            <div class="panel">
+              <div class="panel-title-row">
+                <h3>Plan rapide</h3>
+                <button class="text-btn" data-view-jump="plan">Ouvrir le plan</button>
+              </div>
+              <div id="dashboardZones" class="mini-zones"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="view-plan" class="view">
+          <div id="stats" class="stats"></div>
+          <div id="zones"></div>
+        </section>
+
+        <section id="view-lots" class="view">
+          <div class="panel">
+            <div class="panel-title-row">
+              <h3>Lots</h3>
+              <div class="subtle">Création, modification et suivi des volumes par lot</div>
+            </div>
+            <table>
+              <thead><tr><th>Code</th><th>Millésime</th><th>Type</th><th>Volume</th><th>Cuves</th><th>Statut</th><th></th></tr></thead>
+              <tbody id="lotsBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="view-calendar" class="view">
+          <div class="panel calendar-panel">
+            <div class="calendar-toolbar">
+              <div class="calendar-nav">
+                <button id="calendarPrevBtn" class="secondary">◀</button>
+                <button id="calendarTodayBtn" class="secondary">Aujourd'hui</button>
+                <button id="calendarNextBtn" class="secondary">▶</button>
+                <strong id="calendarMonthLabel"></strong>
+              </div>
+              <div class="calendar-filters">
+                <select id="calendarTypeFilter"><option value="">Tous types</option></select>
+                <select id="calendarStatusFilter">
+                  <option value="">Tous statuts</option>
+                  <option value="prevu">Prévu</option>
+                  <option value="fait">Fait</option>
+                  <option value="annule">Annulé</option>
+                </select>
+                <select id="calendarUserFilter"><option value="">Tous utilisateurs</option></select>
+                <select id="calendarTankFilter"><option value="">Toutes cuves</option></select>
+                <select id="calendarLotFilter"><option value="">Tous lots</option></select>
+                <input id="calendarSearchInput" type="search" placeholder="Filtrer titre / commentaire">
+              </div>
+            </div>
+            <div class="calendar-grid-header">
+              <div>Lun</div><div>Mar</div><div>Mer</div><div>Jeu</div><div>Ven</div><div>Sam</div><div>Dim</div>
+            </div>
+            <div id="calendarGrid" class="calendar-grid"></div>
+            <div class="calendar-day-events panel-lite">
+              <div class="calendar-day-header">
+                <strong id="calendarDayLabel">Événements du jour</strong>
+                <span id="calendarResultsCount" class="subtle"></span>
+              </div>
+              <div id="calendarDayEvents"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="view-history" class="view">
+          <div class="panel">
+            <div class="panel-title-row">
+              <h3>Historique</h3>
+              <div class="subtle">Traçabilité des mouvements, changements de statut et événements</div>
+            </div>
+            <table>
+              <thead><tr><th>Date</th><th>Utilisateur</th><th>Action</th><th>Cuve</th><th>Lot</th><th>Message</th></tr></thead>
+              <tbody id="historyBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="view-alerts" class="view">
+          <div class="alerts-grid">
+            <div class="panel">
+              <div class="panel-title-row"><h3>À dérougir</h3><span id="countDerougir" class="badge"></span></div>
+              <div id="alertsDerougir"></div>
+            </div>
+            <div class="panel">
+              <div class="panel-title-row"><h3>À nettoyer</h3><span id="countNettoyer" class="badge"></span></div>
+              <div id="alertsNettoyer"></div>
+            </div>
+          </div>
+          <div class="alerts-grid">
+            <div class="panel">
+              <div class="panel-title-row"><h3>Alertes système</h3><span id="countSystemAlerts" class="badge"></span></div>
+              <div id="alertsSystem"></div>
+            </div>
+            <div class="panel">
+              <div class="panel-title-row"><h3>Événements en retard</h3><span id="countLateEvents" class="badge"></span></div>
+              <div id="alertsLateEvents"></div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div id="modal" class="modal hidden"><div class="modal-card"><div id="modalContent"></div></div></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

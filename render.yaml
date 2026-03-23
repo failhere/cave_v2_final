@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: cave-suivi-app
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: cave-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PIERRE_PASSWORD
+        value: Pierre2026!
+      - key: JEAN_MICHEL_PASSWORD
+        value: JeanMichel2026!
+      - key: SYLVAIN_PASSWORD
+        value: Sylvain2026!
+databases:
+  - name: free
+    plan: basic-256mb
