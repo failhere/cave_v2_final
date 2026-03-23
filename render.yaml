@@ -20,5 +20,5 @@ services:
       - key: SYLVAIN_PASSWORD
         value: Sylvain2026!
 databases:
-  - name: free
-    plan: basic-256mb
+  - name: cave-db
+    plan: free
