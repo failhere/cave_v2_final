@@ -45,6 +45,16 @@ function timeOnly(v){
   return new Date(v).toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'});
 }
 
+function toIsoLocal(date){
+  const y = date.getFullYear();
+  const m = String(date.getMonth()+1).padStart(2,'0');
+  const d = String(date.getDate()).padStart(2,'0');
+  return `${y}-${m}-${d}`;
+}
+function weekdayShort(date){
+  return date.toLocaleDateString('fr-FR', {weekday:'short'}).replace('.', '');
+}
+
 const TEMP_POINTS = [13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28];
 const MV_POINTS = [1000,1010,1020,1030,1040,1050,1060,1070,1080,1090,1100,1120,1140,1160,1180,1200];
 const MV_CORRECTIONS = {
@@ -352,30 +362,58 @@ function renderEvents(){
   const monthEnd = new Date(state.calendarMonth.getFullYear(), state.calendarMonth.getMonth() + 1, 0);
   el('#calendarMonthLabel').textContent = monthStart.toLocaleDateString('fr-FR', {month:'long', year:'numeric'});
   const firstWeekday = (monthStart.getDay() + 6) % 7;
-  const daysInMonth = monthEnd.getDate();
+  const gridStart = new Date(monthStart);
+  gridStart.setDate(monthStart.getDate() - firstWeekday);
   const grid = [];
-  for (let i=0;i<firstWeekday;i++) grid.push(null);
-  for (let day=1;day<=daysInMonth;day++) grid.push(new Date(state.calendarMonth.getFullYear(), state.calendarMonth.getMonth(), day));
-  while (grid.length % 7 !== 0) grid.push(null);
+  for (let i=0;i<42;i++) {
+    const d = new Date(gridStart);
+    d.setDate(gridStart.getDate() + i);
+    grid.push(d);
+  }
   const eventsByDate = {};
   for (const ev of visibleEvents){
     const key = String(ev.starts_at).slice(0,10);
     (eventsByDate[key] ??= []).push(ev);
   }
-  const todayKey = new Date().toISOString().slice(0,10);
-  if (!state.calendarSelectedDate || state.calendarSelectedDate.slice(0,7) !== monthStart.toISOString().slice(0,7)) {
-    state.calendarSelectedDate = monthStart.toISOString().slice(0,10);
+  const todayKey = toIsoLocal(new Date());
+  const monthKey = `${monthStart.getFullYear()}-${String(monthStart.getMonth()+1).padStart(2,'0')}`;
+  if (!state.calendarSelectedDate || state.calendarSelectedDate.slice(0,7) !== monthKey) {
+    state.calendarSelectedDate = todayKey.startsWith(monthKey) ? todayKey : toIsoLocal(monthStart);
   }
   const selectedKey = state.calendarSelectedDate;
+
+  const counts = visibleEvents.reduce((acc, ev) => {
+    acc.total += 1;
+    acc[ev.status] = (acc[ev.status] || 0) + 1;
+    return acc;
+  }, {total:0, prevu:0, fait:0, annule:0});
+  const filteredDays = new Set(visibleEvents.map(ev => String(ev.starts_at).slice(0,10))).size;
+  el('#calendarSummary').innerHTML = `
+    <span class="calendar-summary-pill"><strong>${counts.total}</strong> événements visibles</span>
+    <span class="calendar-summary-pill status-prevu"><strong>${counts.prevu||0}</strong> prévus</span>
+    <span class="calendar-summary-pill status-fait"><strong>${counts.fait||0}</strong> faits</span>
+    <span class="calendar-summary-pill status-annule"><strong>${counts.annule||0}</strong> annulés</span>
+    <span class="calendar-summary-pill"><strong>${filteredDays}</strong> jours occupés</span>
+  `;
+
   el('#calendarGrid').innerHTML = grid.map(date => {
-    if (!date) return '<div class="calendar-cell empty"></div>';
-    const key = date.toISOString().slice(0,10);
+    const key = toIsoLocal(date);
     const dayEvents = (eventsByDate[key] || []).sort((a,b)=>String(a.starts_at).localeCompare(String(b.starts_at)));
     const extra = Math.max(0, dayEvents.length - 3);
-    return `<button class="calendar-cell ${key===todayKey?'today':''} ${key===selectedKey?'selected':''}" data-cal-date="${key}">
-      <div class="calendar-cell-top"><span class="daynum" aria-label="Jour ${date.getDate()}">${date.getDate()}</span><span class="subtle">${dayEvents.length || ''}</span></div>
+    const isToday = key === todayKey;
+    const isSelected = key === selectedKey;
+    const isOtherMonth = date.getMonth() !== monthStart.getMonth();
+    const isWeekend = [5,6].includes((date.getDay() + 6) % 7);
+    return `<button class="calendar-cell ${isToday?'today':''} ${isSelected?'selected':''} ${isOtherMonth?'other-month':''} ${isWeekend?'weekend':''}" data-cal-date="${key}">
+      <div class="calendar-cell-top">
+        <div class="calendar-date-meta">
+          <span class="daynum" aria-label="Jour ${date.getDate()}">${date.getDate()}</span>
+          <span class="weekday-short">${esc(weekdayShort(date))}</span>
+        </div>
+        ${dayEvents.length ? `<span class="calendar-count">${dayEvents.length}</span>` : ''}
+      </div>
       <div class="calendar-items">
-        ${dayEvents.slice(0,3).map(ev => `<span class="calendar-chip ${esc(ev.status)}">${esc(timeOnly(ev.starts_at))} ${esc(ev.title)}</span>`).join('')}
+        ${dayEvents.slice(0,3).map(ev => `<span class="calendar-chip ${esc(ev.status)}" title="${esc(ev.title)}">${esc(timeOnly(ev.starts_at))} ${esc(ev.title)}</span>`).join('')}
         ${extra ? `<span class="calendar-more">+${extra} autre${extra>1?'s':''}</span>` : ''}
       </div>
     </button>`;
@@ -384,27 +422,38 @@ function renderEvents(){
   renderCalendarDayList(visibleEvents);
 }
 
+
 function renderCalendarDayList(visibleEvents){
   const selectedKey = state.calendarSelectedDate;
   const dayEvents = visibleEvents.filter(ev => String(ev.starts_at).slice(0,10) === selectedKey)
     .sort((a,b)=>String(a.starts_at).localeCompare(String(b.starts_at)));
   const selectedDate = new Date(selectedKey + 'T12:00:00');
+  const statusCounts = dayEvents.reduce((acc, ev) => {
+    acc[ev.status] = (acc[ev.status] || 0) + 1;
+    return acc;
+  }, {});
   el('#calendarDayLabel').textContent = selectedDate.toLocaleDateString('fr-FR', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
   el('#calendarResultsCount').textContent = `${dayEvents.length} événement${dayEvents.length>1?'s':''}`;
+  el('#calendarDayMeta').innerHTML = dayEvents.length ? `
+    <span class="calendar-summary-pill status-prevu">${statusCounts.prevu || 0} prévus</span>
+    <span class="calendar-summary-pill status-fait">${statusCounts.fait || 0} faits</span>
+    <span class="calendar-summary-pill status-annule">${statusCounts.annule || 0} annulés</span>
+  ` : '<span class="subtle">Aucun événement pour ce jour avec les filtres actuels.</span>';
   el('#calendarDayEvents').innerHTML = dayEvents.map(ev => `
     <div class="calendar-event-card">
       <div class="calendar-event-top">
         <strong>${esc(ev.title)}</strong>
-        <span class="badge">${esc(ev.status)}</span>
+        <span class="badge ${esc(ev.status)}">${esc(ev.status)}</span>
       </div>
       <div class="subtle">${timeOnly(ev.starts_at)}${ev.ends_at ? ` → ${timeOnly(ev.ends_at)}` : ''} · ${esc(ev.event_type || '')}</div>
       <div class="subtle">Cuve : ${esc(ev.tank_id || '—')} · Lot : ${esc(ev.lot_code || '—')} · Assigné : ${esc(ev.assigned_user_name || '—')}</div>
       ${ev.comment ? `<div>${esc(ev.comment)}</div>` : ''}
       <div class="actions-row"><button class="secondary" data-edit-event="${ev.id}">Modifier</button></div>
     </div>
-  `).join('') || '<div class="subtle">Aucun événement pour cette journée avec les filtres actuels.</div>';
+  `).join('') || '';
   els('[data-edit-event]').forEach(b => b.onclick = () => openEventForm(state.events.find(e => String(e.id) === String(b.dataset.editEvent))));
 }
+
 
 function computeSystemAlerts(){
   const alerts = [];
