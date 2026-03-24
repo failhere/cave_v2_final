@@ -9,7 +9,7 @@ const state = {
   history: [],
   editable: false,
   calendarMonth: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
-  calendarSelectedDate: new Date().toISOString().slice(0,10),
+  calendarSelectedDate: toIsoLocal(new Date()),
 };
 
 const STATUS_LABELS = {
@@ -50,6 +50,14 @@ function toIsoLocal(date){
   const m = String(date.getMonth()+1).padStart(2,'0');
   const d = String(date.getDate()).padStart(2,'0');
   return `${y}-${m}-${d}`;
+}
+function toLocalDateTimeInputValue(date){
+  const y = date.getFullYear();
+  const m = String(date.getMonth()+1).padStart(2,'0');
+  const d = String(date.getDate()).padStart(2,'0');
+  const hh = String(date.getHours()).padStart(2,'0');
+  const mm = String(date.getMinutes()).padStart(2,'0');
+  return `${y}-${m}-${d}T${hh}:${mm}`;
 }
 function weekdayShort(date){
   return date.toLocaleDateString('fr-FR', {weekday:'short'}).replace('.', '');
@@ -213,7 +221,7 @@ function renderDashboard(){
   `;
   const now = new Date();
   el('#todayDateLabel').textContent = now.toLocaleDateString('fr-FR', {weekday:'long', day:'numeric', month:'long'});
-  const todayKey = now.toISOString().slice(0,10);
+  const todayKey = toIsoLocal(now);
   const todayEvents = state.events.filter(e => String(e.starts_at).slice(0,10) === todayKey)
     .sort((a,b)=>String(a.starts_at).localeCompare(String(b.starts_at)));
   el('#todayEvents').innerHTML = todayEvents.map(ev => `
@@ -739,7 +747,7 @@ function openLotForm(lot=null){
 }
 
 function openEventForm(event=null){
-  const starts = event?.starts_at ? event.starts_at.slice(0,16) : new Date().toISOString().slice(0,16);
+  const starts = event?.starts_at ? event.starts_at.slice(0,16) : toLocalDateTimeInputValue(new Date());
   const ends = event?.ends_at ? event.ends_at.slice(0,16) : '';
   modal(`
     <h3>${event ? 'Modifier' : 'Créer'} un événement</h3>
@@ -827,7 +835,7 @@ function bindGlobalEvents(){
   el('#newEventBtn').onclick = () => openEventForm();
   el('#calendarPrevBtn').onclick = () => { state.calendarMonth = new Date(state.calendarMonth.getFullYear(), state.calendarMonth.getMonth()-1, 1); renderEvents(); };
   el('#calendarNextBtn').onclick = () => { state.calendarMonth = new Date(state.calendarMonth.getFullYear(), state.calendarMonth.getMonth()+1, 1); renderEvents(); };
-  el('#calendarTodayBtn').onclick = () => { const now = new Date(); state.calendarMonth = new Date(now.getFullYear(), now.getMonth(), 1); state.calendarSelectedDate = now.toISOString().slice(0,10); renderEvents(); };
+  el('#calendarTodayBtn').onclick = () => { const now = new Date(); state.calendarMonth = new Date(now.getFullYear(), now.getMonth(), 1); state.calendarSelectedDate = toIsoLocal(now); renderEvents(); };
   ['#calendarTypeFilter','#calendarStatusFilter','#calendarUserFilter','#calendarTankFilter','#calendarLotFilter'].forEach(sel => el(sel).addEventListener('change', renderEvents));
   el('#calendarSearchInput').addEventListener('input', () => {
     clearTimeout(window.__calTimer);
