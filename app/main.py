@@ -197,9 +197,9 @@ def compute_juice_yield(volume_hl: float, grape_weight_kg: float) -> tuple[Optio
     if volume_hl is None or grape_weight_kg in (None, 0):
         return None, None
     liters = volume_hl * 100.0
-    l_per_100kg = (liters / grape_weight_kg) * 100.0
-    pct = (liters / grape_weight_kg) * 100.0
-    return l_per_100kg, pct
+    l_per_kg = liters / grape_weight_kg
+    pct = l_per_kg * 100.0
+    return l_per_kg, pct
 
 
 def compute_entry_metrics(raw_reading: Optional[float], temperature_c: Optional[float], volume_hl: Optional[float], grape_weight_kg: Optional[float]) -> dict:
@@ -218,7 +218,7 @@ def compute_entry_metrics(raw_reading: Optional[float], temperature_c: Optional[
         'corrected_density_20c_rounded': corrected_rounded,
         'tav_potential': tav,
         'sugar_g_l': sugar,
-        'juice_yield_l_per_100kg': y_l100,
+        'juice_yield_l_per_kg': y_l100,
         'juice_yield_pct': y_pct,
     }
 
@@ -540,7 +540,7 @@ def api_create_movement(request: Request, payload: dict, db: Session = Depends(g
     corrected_density = None
     sugar_g_l = None
     tav_potential = None
-    juice_yield_l_per_100kg = None
+    juice_yield_l_per_kg = None
     juice_yield_pct = None
 
     if mtype == 'autre' and not operation_name:
@@ -568,7 +568,7 @@ def api_create_movement(request: Request, payload: dict, db: Session = Depends(g
         corrected_density = metrics['corrected_density_20c']
         tav_potential = round(metrics['tav_potential'], 2) if metrics['tav_potential'] is not None else None
         sugar_g_l = round(metrics['sugar_g_l'], 1) if metrics['sugar_g_l'] is not None else None
-        juice_yield_l_per_100kg = round(metrics['juice_yield_l_per_100kg'], 2) if metrics['juice_yield_l_per_100kg'] is not None else None
+        juice_yield_l_per_kg = round(metrics['juice_yield_l_per_kg'], 3) if metrics['juice_yield_l_per_kg'] is not None else None
         juice_yield_pct = round(metrics['juice_yield_pct'], 2) if metrics['juice_yield_pct'] is not None else None
         extras = []
         if grape_weight_kg is not None:
@@ -583,8 +583,8 @@ def api_create_movement(request: Request, payload: dict, db: Session = Depends(g
             extras.append(f'sucres {sugar_g_l:.1f} g/L')
         if tav_potential is not None:
             extras.append(f'TAV probable {tav_potential:.2f}%')
-        if juice_yield_l_per_100kg is not None:
-            extras.append(f'rendement {juice_yield_l_per_100kg:.2f} L/100 kg')
+        if juice_yield_l_per_kg is not None:
+            extras.append(f'rendement {juice_yield_l_per_kg:.3f} L/kg')
         suffix = (' — ' + ', '.join(extras)) if extras else ''
         log_msg = f'Entrée {volume} hL vers {dest.id}{suffix}'
         tank_for_log = dest.id
@@ -676,7 +676,7 @@ def api_create_movement(request: Request, payload: dict, db: Session = Depends(g
         sugar_g_l=sugar_g_l,
         must_temperature_c=must_temperature_c,
         tav_potential=tav_potential,
-        juice_yield_l_per_100kg=juice_yield_l_per_100kg,
+        juice_yield_l_per_kg=juice_yield_l_per_kg,
         juice_yield_pct=juice_yield_pct,
         lot_id=lot.id if lot else None,
         comment=comment,
@@ -734,3 +734,4 @@ def api_reset_tank(tank_id: str, request: Request, payload: dict, db: Session = 
 @app.get('/health')
 def health():
     return {'ok': True}
+
